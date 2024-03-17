@@ -1,0 +1,36 @@
+{
+  "name": "chrome-web-store-api",
+  "version": "1.0.7",
+  "description": "A Node.js package to fetch statistics from the Chrome Web Store",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "test-watch": "mocha --reporter spec --watch",
+    "start": "node index.js",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leizhenpeng/chrome-web-store-api"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "webstore",
+    "stats"
+  ],
+  "author": "river laolei@forkway.cn",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
+  "homepage": "https://github.com/leizhenpeng/chrome-web-store-api",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coveralls": "^3.1.0",
+    "eslint": "^7.5.0",
+    "mocha": "^8.0.1",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^15.1.0"
+  }
+}
