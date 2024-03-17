@@ -41,13 +41,13 @@ const regexPatterns = {
     offeredBy: /Offered by<\/div>\s*<div[^>]*>([^<]+)<\/div>/,
     updated: /Updated<\/div>\s*<div[^>]*>([^<]+)<\/div>/,
     size: /Size<\/div>\s*<div[^>]*>([^<]+)<\/div>/,
-    languages: /Languages<\/div>\s*<div[^>]*>\s*<div[^>]*>\s*(.+?)<span class="HPTfYd-suEOdc-sM5MNb-OWXEXe-nzrxxc">/,
-    developer: /Developer<\/div>\s*<div[^>]*>\s*<div[^>]*>\s*<div[^>]*>([\s\S]+?)<\/div>/,
+    languages: /Languages<\/div>\s*<div[^>]*>\s*<div[^>]*>([^<]+)<\/div>/,
+    // developer: /Developer<\/div>\s*<div[^>]*>\s*<div[^>]*>\s*<div[^>]*>([\s\S]+?)<\/div>/,
     logoUrl: /<img src="([^"]+)"[^>]*alt="Item logo image[^>]*>/,
     coverImage: /AF_initDataCallback\(\{.*?\["[^"]*","[^"]*","[^"]*",[^,]*,[^,]*,"([^"]*)"/,
-    website: /<a[^>]+href="([^"]+)"[^>]*>\s*Website\s*<\/a>/,
+    website: /Developer<\/div>[\s\S]*?<a[^>]+href="([^"]+)"[^>]*>.*?Website.*?<\/a>/,
     privacyPolicy: /<a[^>]+href="([^"]+)"[^>]*>privacy policy<\/a>/,
-    email: /Email<\/svg><\/summary>.*?<div[^>]*>([^<]+)<\/div>/s,
+    email: /Developer<\/div>[\s\S]*?<div[^>]*?>([\w.-]+@[\w.-]+\.\w+)<\/div>/
 };
 
 module.exports = async function (inputIDs) {
@@ -62,34 +62,40 @@ module.exports = async function (inputIDs) {
 
         try {
             const data = await fetchExtensionData(extensionID);
-
-            const details = {
+            const basicInfo = {
                 extensionId: extensionID,
+                iconUrl: extractData(regexPatterns.logoUrl, data),
+                url: extractData(regexPatterns.url, data),
                 name: extractData(regexPatterns.title, data),
-                urlName: extractData(regexPatterns.canonicalLink, data),
+                description: extractData(regexPatterns.description, data),
                 installCount: parseInt(extractData(regexPatterns.userCount, data)?.replace(/,/g, '') || '0', 10),
                 rating: parseInt(extractData(regexPatterns.ratingCount, data)?.replace(/,/g, '') || '0', 10),
                 reviewCount: parseFloat(extractData(regexPatterns.ratingValue, data) || '0'),
-                description: extractData(regexPatterns.description, data),
-                iconUrl: extractData(regexPatterns.logoUrl, data),
-                coverUrl: extractData(regexPatterns.coverImage, data),
-                detailUrl: extractData(regexPatterns.url, data),
+            };
+            if (!basicInfo.url) {
+                throw new Error('Extension not found');
+            }
+            const detailedInfo = {
                 detailedDescription: extractData(regexPatterns.detailedDescription, data)?.replace(/<[^>]+>/g, '').trim(),
-				additionalImages : extractImageUrls(data, regexPatterns.introImages),
+                additionalImages: extractImageUrls(data, regexPatterns.introImages),
                 version: extractData(regexPatterns.version, data),
                 offeredBy: extractData(regexPatterns.offeredBy, data),
                 updated: extractData(regexPatterns.updated, data),
                 size: extractData(regexPatterns.size, data),
                 languages: extractData(regexPatterns.languages, data),
-                developer: extractData(regexPatterns.developer, data)?.trim().replace(/<[^>]+>/g, ''),
+                // developer: extractData(regexPatterns.developer, data)?.trim().replace(/<[^>]+>/g, ''),
                 email: extractData(regexPatterns.email, data)?.trim(),
                 websiteUrl: extractData(regexPatterns.website, data)?.trim(),
                 privacyPolicyUrl: extractData(regexPatterns.privacyPolicy, data),
             };
 
-            responses[extensionID] = { success: true, error: null, ...details };
+
+            responses[extensionID] = {
+                success: true, error: null, ...basicInfo, details: detailedInfo
+            };
         } catch (e) {
-            responses[extensionID] = { success: false, error: `Couldn't find extension with ID ${extensionID}` };
+            responses[extensionID] = { success: false, error: `Couldn't find extension with ID ${extensionID}`,
+                };
         }
     }
 
