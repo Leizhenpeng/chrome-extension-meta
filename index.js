@@ -53,7 +53,6 @@ const regexPatterns = {
 module.exports = async function (inputIDs) {
     const extensionIDs = [].concat(inputIDs);
     const responses = {};
-
     for (let extensionID of extensionIDs) {
         if (typeof extensionID !== "string" || !REGEX_EXTENSION_ID.test(extensionID.toLowerCase())) {
             responses[extensionID] = { success: false, error: 'Invalid extension ID.' };
@@ -101,3 +100,5 @@ module.exports = async function (inputIDs) {
 
     return extensionIDs.length <= 1 ? responses[extensionIDs[0]] : responses;
 };
+
+

@@ -1,10 +1,11 @@
-// Type declarations for node-fetch
-import fetch from 'node-fetch';
+// Declare module to augment the node-fetch types if necessary
+declare module "node-fetch" {
+  export default function fetch(url: string, init?: any): Promise<Response>;
+}
 
-declare const URL_PREFIX: string;
-declare const REGEX_EXTENSION_ID: RegExp;
-
-interface BasicInfo {
+declare module "chrome-extension-meta" {
+  // Define the shape of your extension data
+  interface ExtensionData {
     extensionId: string;
     iconUrl: string | null;
     url: string | null;
@@ -13,40 +14,32 @@ interface BasicInfo {
     installCount: number;
     rating: number;
     reviewCount: number;
-}
+    detailedDescription?: string;
+    additionalImages?: string[];
+    version?: string;
+    offeredBy?: string;
+    updated?: string;
+    size?: string;
+    languages?: string;
+    email?: string;
+    websiteUrl?: string;
+    privacyPolicyUrl?: string;
+  }
 
-interface DetailedInfo {
-    detailedDescription: string | null;
-    additionalImages: string[];
-    version: string | null;
-    offeredBy: string | null;
-    updated: string | null;
-    size: string | null;
-    languages: string | null;
-    email: string | null;
-    websiteUrl: string | null;
-    privacyPolicyUrl: string | null;
-}
-
-interface ExtensionResponse {
+  // Define the shape of the response object
+  interface ExtensionResponse {
     success: boolean;
     error: string | null;
-    details?: DetailedInfo;
+    details?: ExtensionData;
+  }
+
+  // Define the function signature
+  function fetchExtensionData(extensionID: string): Promise<string>;
+  function extractData(regex: RegExp, text: string): string | null;
+  function extractImageUrls(data: string, regex: RegExp): string[];
+
+  // Export the main function
+  export default function (
+    inputIDs: string | string[]
+  ): Promise<ExtensionResponse | { [key: string]: ExtensionResponse }>;
 }
-
-// ExtensionData could be either a single ExtensionResponse or a record of string keys to ExtensionResponse
-type ExtensionData = ExtensionResponse | Record<string, ExtensionResponse>;
-
-async function fetchExtensionData(extensionID: string): Promise<string>;
-
-function extractData(regex: RegExp, text: string): string | null;
-
-function extractImageUrls(data: string, regex: RegExp): string[];
-
-declare const regexPatterns: {
-    [key: string]: RegExp;
-};
-
-function extractExtensionData(extensionID: string): Promise<ExtensionResponse>;
-
-export function fetchAndProcessExtensions(inputIDs: string | string[]): Promise<ExtensionData>;

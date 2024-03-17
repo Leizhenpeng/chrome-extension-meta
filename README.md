@@ -130,7 +130,7 @@ An object is returned with each key as an extension ID, and the value is the res
 
 ## Author
 
-River Laolei (laolei@forkway.cn)
+River (laolei@forkway.cn)
 
 ## GitHub Repository
 
