@@ -1,9 +1,9 @@
 
-# **chrome-web-store-api**
+# **chrome-extension-meta**
 
 ## Introduction
 
-`chrome-web-store-api` is a Node.js library designed to fetch essential details about extensions available on the Chrome Web Store. It offers programmatic access to various extension details such as name, approximate install count, user ratings, and more.
+`chrome-extension-meta` is a Node.js library designed to fetch essential details about extensions available on the Chrome Web Store. It offers programmatic access to various extension details such as name, approximate install count, user ratings, and more.
 
 ## Key Features
 
@@ -13,10 +13,10 @@
 
 ## Installation
 
-To integrate `chrome-web-store-api` into your project, run the following command in your terminal:
+To integrate `chrome-extension-meta` into your project, run the following command in your terminal:
 
 ```bash
-npm install chrome-web-store-api
+npm install chrome-extension-meta
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ npm install chrome-web-store-api
    Initialize the library in your JavaScript file.
 
    ```javascript
-   const chromeStoreApi = require('chrome-web-store-api');
+   const chromeStoreApi = require('chrome-extension-meta');
    ```
 
 2. **Fetching Details:**
@@ -134,4 +134,4 @@ River Laolei (laolei@forkway.cn)
 
 ## GitHub Repository
 
-For more information and to contribute, visit the GitHub repository: [leizhenpeng/chrome-web-store-api](https://github.com/leizhenpeng/chrome-web-store-api)
+For more information and to contribute, visit the GitHub repository: [leizhenpeng/chrome-extension-meta](https://github.com/leizhenpeng/chrome-extension-meta)

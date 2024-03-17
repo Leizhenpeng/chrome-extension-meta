@@ -1,8 +1,9 @@
 {
-  "name": "chrome-web-store-api",
+  "name": "chrome-extension-meta",
   "version": "1.0.7",
   "description": "A Node.js package to fetch statistics from the Chrome Web Store",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "mocha",
     "test-watch": "mocha --reporter spec --watch",
@@ -12,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/leizhenpeng/chrome-web-store-api"
+    "url": "https://github.com/leizhenpeng/chrome-extension-meta"
   },
   "keywords": [
     "chrome",
@@ -25,7 +26,7 @@
   "dependencies": {
     "node-fetch": "^2.6.0"
   },
-  "homepage": "https://github.com/leizhenpeng/chrome-web-store-api",
+  "homepage": "https://github.com/leizhenpeng/chrome-extension-meta",
   "devDependencies": {
     "chai": "^4.2.0",
     "conventional-changelog-cli": "^4.1.0",
