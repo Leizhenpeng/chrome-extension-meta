@@ -1,19 +1,11 @@
-# Change Log
+## 1.0.7 (2024-03-17)
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-## [1.0.4] (2020-07-21)
-### Features
-* Fix scraping of pages for all values.
 
-## [1.0.4] (2020-07-21)
 ### Features
-* Specify files for npmjs. Only require index.js and other required files.
 
-## [1.0.3] (2020-07-21)
-### Features
-* Added README badges, CHANGELOG, Travis CI builds and Coveralls test coverage.
+* add readme ([3888d0b](https://github.com/leizhenpeng/chrome-web-store-api/commit/3888d0b2f49dfe73c03c0d98c3b00697f4f642d3))
+* add test file ([e3b9e75](https://github.com/leizhenpeng/chrome-web-store-api/commit/e3b9e75d126e810035bbded702b0f2c3bc393512))
+* init ([cfcfd35](https://github.com/leizhenpeng/chrome-web-store-api/commit/cfcfd35e4cf4b0325acd7025ba05178ac537a68e))
 
-## [1.0.2] (2020-07-21)
-### Features
-* Production ready version, added unit tests.
-* Implemented array of extension ID's as parameter.
+
+
