@@ -4,6 +4,7 @@
 [**简体中文**](./README_CN.md) · [**English**](./README.md)
 
 </samp>
+
 ## 介绍 📜
 
 `chrome-extension-meta` 是一个为 Node.js 设计的库，旨在获取 Chrome 网上应用店中可用扩展的基本详细信息。它提供了对各种扩展细节的程序化访问，如名称、大致安装次数、用户评分等。

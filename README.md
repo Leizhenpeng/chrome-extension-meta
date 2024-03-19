@@ -5,6 +5,7 @@
 [**简体中文**](./README_CN.md) · [**English**](./README.md)
 
 </samp>
+
 ## Introduction 📜
 
 `chrome-extension-meta` is a Node.js library designed to fetch essential details about extensions available on the Chrome Web Store. It offers programmatic access to various extension details such as name, approximate install count, user ratings, and more.
