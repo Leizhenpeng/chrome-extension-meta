@@ -1,7 +1,8 @@
-const { chromeStoreStats } = require('./detail');
-const { quickSearch } = require('./search');
+const { extMeta } = require('./detail');
+const { quickSearch,fullSearch } = require('./search');
 
 module.exports = {
-    chromeStoreStats,
-    quickSearch
+    extMeta,
+    quickSearch,
+    fullSearch
 };

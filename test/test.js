@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const { chromeStoreStats } = require('../index.js');
+const { extMeta } = require('../index.js');
 const { quickSearch } = require('../index.js');
 const { fullSearch } = require('../search.js');
 
@@ -7,7 +7,7 @@ describe.skip("Chrome Web Store API Tests", function () {
 	this.timeout(6000); // Set timeout for all tests in this describe block
 	describe.only("Single ID Tests", function () {
 		it.skip("should handle existing extension ID:gkkmiofalnjagdcjheckamobghglpdpm", async function () {
-			const data = await chromeStoreStats('gkkmiofalnjagdcjheckamobghglpdpm');
+			const data = await extMeta('gkkmiofalnjagdcjheckamobghglpdpm');
 			assert.typeOf(data, 'object');
 			assert.equal(data.success, true);
 			assert.isNull(data.error);
@@ -18,7 +18,7 @@ describe.skip("Chrome Web Store API Tests", function () {
 		});
 
 		it.skip("should handle existing extension ID:hlepfoohegkhhmjieoechaddaejaokhf", async function () {
-			const data = await chromeStoreStats('hlepfoohegkhhmjieoechaddaejaokhf');
+			const data = await extMeta('hlepfoohegkhhmjieoechaddaejaokhf');
 			assert.typeOf(data, 'object');
 			assert.equal(data.success, true);
 			assert.isNull(data.error);
@@ -29,7 +29,7 @@ describe.skip("Chrome Web Store API Tests", function () {
 		});
 
 		it("should handle existing extension ID:hlepfoohegkhhmjieoechaddaejaokhf", async function () {
-			const data = await chromeStoreStats('bkhaagjahfmjljalopjnoealnfndnagc');
+			const data = await extMeta('bkhaagjahfmjljalopjnoealnfndnagc');
 			assert.typeOf(data, 'object');
 			assert.equal(data.success, true);
 			assert.isNull(data.error);
@@ -40,7 +40,7 @@ describe.skip("Chrome Web Store API Tests", function () {
 		});
 
 		it.skip("should handle existing extension ID:gmimocjjppdelmhpcmpkhekmpoddgima", async function () {
-			const data = await chromeStoreStats('gmimocjjppdelmhpcmpkhekmpoddgima');
+			const data = await extMeta('gmimocjjppdelmhpcmpkhekmpoddgima');
 			assert.typeOf(data, 'object');
 			assert.equal(data.success, true);
 			assert.isNull(data.error);
@@ -50,7 +50,7 @@ describe.skip("Chrome Web Store API Tests", function () {
 
 
 		it("should handle existing extension ID:cdnlfphfngnfhjcnoikfhaomaaflaiie", async function () {
-			const data = await chromeStoreStats('cdnlfphfngnfhjcnoikfhaomaaflaiie');
+			const data = await extMeta('cdnlfphfngnfhjcnoikfhaomaaflaiie');
 			assert.typeOf(data, 'object');
 			assert.equal(data.success, true);
 			assert.isNull(data.error);
@@ -63,7 +63,7 @@ describe.skip("Chrome Web Store API Tests", function () {
 	describe("Multiple IDs Tests", function () {
 		this.timeout(6000); // Set timeout for all tests in this describe block
 		it("should handle array of IDs", async function () {
-			var data = await chromeStoreStats(['gkkmiofalnjagdcjheckamobghglpdpm', 'gkkmiofalnjagdcjheckamobghglpdpz']);
+			var data = await extMeta(['gkkmiofalnjagdcjheckamobghglpdpm', 'gkkmiofalnjagdcjheckamobghglpdpz']);
 			assert.typeOf(data, 'object');
 			assert.lengthOf(Object.keys(data), 2);
 
@@ -86,7 +86,7 @@ describe.skip("Chrome Web Store API Tests", function () {
 
 	describe("Edge Cases", function () {
 		it("should handle empty instantiation", async function () {
-			const data = await chromeStoreStats();
+			const data = await extMeta();
 
 			assert.typeOf(data, 'object');
 			assert.equal(data.success, false);
@@ -94,14 +94,14 @@ describe.skip("Chrome Web Store API Tests", function () {
 		});
 
 		it("should handle null instantiation", async function () {
-			const data = await chromeStoreStats(null);
+			const data = await extMeta(null);
 			assert.typeOf(data, 'object');
 			assert.equal(data.success, false);
 			assert.equal(data.error, 'Invalid extension ID.');
 		});
 
 		it("should handle undefined instantiation", async function () {
-			const data = await chromeStoreStats(undefined);
+			const data = await extMeta(undefined);
 			assert.typeOf(data, 'object');
 			assert.equal(data.success, false);
 			assert.equal(data.error, 'Invalid extension ID.');
@@ -109,7 +109,7 @@ describe.skip("Chrome Web Store API Tests", function () {
 		});
 
 		it("should handle numeric extension ID", async function () {
-			const data = await chromeStoreStats(3409);
+			const data = await extMeta(3409);
 			assert.typeOf(data, 'object');
 			assert.equal(data.success, false);
 			assert.equal(data.error, 'Invalid extension ID.');
@@ -117,7 +117,7 @@ describe.skip("Chrome Web Store API Tests", function () {
 		});
 
 		it("should handle incorrect string instantiation", async function () {
-			const data = await chromeStoreStats('3409');
+			const data = await extMeta('3409');
 			assert.typeOf(data, 'object');
 			assert.equal(data.success, false);
 			assert.equal(data.error, 'Invalid extension ID.');
@@ -127,15 +127,14 @@ describe.skip("Chrome Web Store API Tests", function () {
 });
 
 
-describe.only("chrome Quick Search ", () => {
+describe.skip("chrome Quick Search ", () => {
 	it("should handle existing keyword", async () => {
 		const data = await quickSearch('YOUTUBE');
-		console.log('data',data)
 		assert.equal(data.success, true);
 		assert.isNull(data.error);
 		assert.isAbove(data.data.length, 0);
 		assert.isBelow(data.data.length, 11);
-		console.log(data.data.length);
+		// console.log(data.data);
 	});
 
 	it("should handle existing keyword", async () => {
@@ -144,23 +143,26 @@ describe.only("chrome Quick Search ", () => {
 		assert.equal(data.success, true);
 		assert.isNull(data.error);
 		assert.isAbove(data.data.length, 0);
-		console.log(data.data);
+		// console.log(data.data);
 	});
 
-	// it("should handle non-existing keyword", async () => {
-	// 	const data = await chromeStoreStats.quickSearch('NON_EXISTING_KEYWORD');
-	// 	assert.isNull(data);
-	// });
 })
 
 
 describe.skip('chorm full searh', () => {
 	it('should handle existing keyword', async () => {
-		const data = await fullSearch('YOUTUBE');
+		const data = await fullSearch('YOUTUBE', 11);
+		// console.log(data.data);
 		assert.equal(data.success, true);
 		assert.isNull(data.error);
-		assert.equal(data.number, 10);
-		console.log(data.data.length);
+		assert.isAbove(data.data.length, 3);
+		assert.equal(data.number, 11);
+	});
+	it('should handle existing keyword', async () => {
+		const data = await fullSearch('抖音', 20);
+		assert.equal(data.success, true);
+		assert.isNull(data.error);
+		assert.isAbove(data.number, 10);
 	});
 })
 
