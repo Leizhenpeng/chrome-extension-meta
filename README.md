@@ -86,6 +86,33 @@ async function quickSearch(query) {
 
 // Example usage:
 quickSearch('youtube');
+
+//Example Reponse
+{
+  success: true,
+  error: null,
+  number: 10,
+  data: [
+    {
+      name: 'Adblock for Youtube™',
+      id: 'cmedhionkhpnakcndndgjdbohmhepckk',
+      version: '1',
+      iconURL: 'https://lh3.googleusercontent.com/bMu6IzWn8zG4yCpDcUrrTHA8bh5pVuAW706__3d2e6Lw_XwpqY3qxn_BfqUS3aaCTisvqFQIN1C9ac4Dm6s0Fz-vOg'
+    },
+    {
+      name: 'Magic Actions for YouTube™',
+      id: 'abjcfabbhafbcdfjoecdgepllmpfceif',
+      version: '1',
+      iconURL: 'https://lh3.googleusercontent.com/RZIl-KcDWp_GzAotuO4KZkfrDYMFyQm3yAT6v5k-BRshCIcegVon164qNmfS9DWWoX0nCBgg3_B_srbtQdxJzT_4PA'
+    },
+    {
+      name: 'Return YouTube Dislike',
+      id: 'gebbhagfogifgggkldgodflihgfeippi',
+      version: '1',
+      iconURL: 'https://lh3.googleusercontent.com/X0-M21C_VbWyXYuUjN55oyMDvOukjbzAxbs_WrUjwzsebWbyjFCIEchOtczI0DBvbyL9MUpuEWnghm19gF6dp8Vriw'
+    },
+    //..
+  ]}
 ```
 
 ### FullSearch
@@ -103,6 +130,44 @@ async function fullSearch(query, count) {
 
 // Example usage:
 fullSearch('tiktok', 10);
+
+
+// Example Response
+{
+  success: true,
+  error: null,
+  number: 11,
+  data: [
+    {
+      id: 'cdphkkecaejjijafinepmkefiegpkdjf',
+      iconURL: 'https://lh3.googleusercontent.com/gM35fKqoEeCuNXTXDOin74oxaxSKbAb-y3klmr8MbO6UTq3I-OZI8NdMY5X7iD0YUpopE_TaI8GvZJoDHoe3KePS',
+      title: 'TikTok™ for Desktop',
+      rating: '3.0943396226415096',
+      reviewCount: '53',
+      coverURL: 'https://lh3.googleusercontent.com/AwjI84r9DGHzqiITgMQw4eygbx-8cGjT5hMvD37sYZiLOoTTRQWw8kh5vNP7AqjO2jhjIYF_BrlaLp8Js79NUhDZ',
+      description: 'Experience TikTok™ for desktop like never before: a Chrome extension that brings exciting and creative content to your screen'
+    },
+    {
+      id: 'dcpmkllpnpfpojkjildgeoedikjbhodm',
+      iconURL: 'https://lh3.googleusercontent.com/S8NBQ-6bUFZuYCG0jnvTpnAIiFZSTJBaPEB0tXZDQfcwiXVIU6TVVewfz9AmaZ2cUtALKQHPFSyJ0zgmEoZl6CU9ug',
+      title: 'Web for TikTok',
+      rating: '4.2',
+      reviewCount: '5',
+      coverURL: 'https://lh3.googleusercontent.com/OCiLHYZuzVFlY2AEhGHwbKwat6otbC7t0S0OEv-Ik49DL8-mdAQ3zafuMgLLL9pAoi4Rm0NPGf00kTCzm_CoQLQPdQ',
+      description: 'Browse and download your favorite videos on TikTok. Upload videos'
+    },
+    {
+      id: 'okieokifcnnigcgceookjighhplbhcip',
+      iconURL: 'https://lh3.googleusercontent.com/jP8Gu2FZUWbYixUolNJ9gimelrx09zph0ve0lyKJotPcbsnP-edeGWq2CLmGdS1kUXeSTu9_971OZ9P3u8cZ_-ET_W4',
+      title: 'Denote: Save Ads for TikTok \\u0026 Facebook',
+      rating: '4.375',
+      reviewCount: '24',
+      coverURL: 'https://lh3.googleusercontent.com/BbaCzLiooCqtOcHyPflKWwfnwtQxhUbh9yDSxSvPCLXx0OZsiO91DXtXoQ61VDQ7lvltE6aDuZF_Z9TKLvtTF3nY',
+      description: 'Save creative video ads from TikTok Creative Center and Facebook Ad Library with one click.'
+    },
+    //...
+  ]
+}
 ```
 
 ## Returned Data Structure 📐

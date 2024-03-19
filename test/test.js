@@ -127,7 +127,7 @@ describe.skip("Chrome Web Store API Tests", function () {
 });
 
 
-describe.skip("chrome Quick Search ", () => {
+describe.only("chrome Quick Search ", () => {
 	it("should handle existing keyword", async () => {
 		const data = await quickSearch('YOUTUBE');
 		assert.equal(data.success, true);

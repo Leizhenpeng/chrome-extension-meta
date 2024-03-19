@@ -1,6 +1,6 @@
 {
   "name": "chrome-extension-meta",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Node.js package to fetch statistics from the Chrome Web Store",
   "main": "index.js",
   "types": "index.d.ts",
