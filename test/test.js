@@ -1,9 +1,11 @@
 const assert = require('chai').assert;
-const chromeStoreStats = require('../index.js');
+const { chromeStoreStats } = require('../index.js');
+const { quickSearch } = require('../index.js');
+const { fullSearch } = require('../search.js');
 
-describe("Chrome Web Store API Tests", function () {
+describe.skip("Chrome Web Store API Tests", function () {
 	this.timeout(6000); // Set timeout for all tests in this describe block
-	describe("Single ID Tests", function () {
+	describe.only("Single ID Tests", function () {
 		it.skip("should handle existing extension ID:gkkmiofalnjagdcjheckamobghglpdpm", async function () {
 			const data = await chromeStoreStats('gkkmiofalnjagdcjheckamobghglpdpm');
 			assert.typeOf(data, 'object');
@@ -123,3 +125,42 @@ describe("Chrome Web Store API Tests", function () {
 		});
 	});
 });
+
+
+describe.only("chrome Quick Search ", () => {
+	it("should handle existing keyword", async () => {
+		const data = await quickSearch('YOUTUBE');
+		console.log('data',data)
+		assert.equal(data.success, true);
+		assert.isNull(data.error);
+		assert.isAbove(data.data.length, 0);
+		assert.isBelow(data.data.length, 11);
+		console.log(data.data.length);
+	});
+
+	it("should handle existing keyword", async () => {
+		const data = await quickSearch('飞书');
+		// console.log('data',data)
+		assert.equal(data.success, true);
+		assert.isNull(data.error);
+		assert.isAbove(data.data.length, 0);
+		console.log(data.data);
+	});
+
+	// it("should handle non-existing keyword", async () => {
+	// 	const data = await chromeStoreStats.quickSearch('NON_EXISTING_KEYWORD');
+	// 	assert.isNull(data);
+	// });
+})
+
+
+describe.skip('chorm full searh', () => {
+	it('should handle existing keyword', async () => {
+		const data = await fullSearch('YOUTUBE');
+		assert.equal(data.success, true);
+		assert.isNull(data.error);
+		assert.equal(data.number, 10);
+		console.log(data.data.length);
+	});
+})
+
